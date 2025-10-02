@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Legends — Guía básica</title>
+  <link rel="stylesheet" href="apex.css">
+</head>
+<body>
+  <div class="site">
+    <!--Sidebar-->
+    <aside class="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="brand__logo">
+          <img src="img/logo2.png" alt="Logo" loading="lazy">
+        </div>
+        <div>
+          <h1>Apex Legends</h1>
+          <p class="brand__tag">Guía Rápida</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#inicio" class="is-active">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+          </div>
+          <span>Inicio</span>
+        </a>
+        <a href="#leyendas">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick" viewBox="0 0 16 16"><path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2"/><path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23"/></svg>
+          </div>
+          <span>Leyendas</span>
+        </a>
+        <a href="#armas">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tropical-storm" viewBox="0 0 16 16"><path d="M8 9.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/><path d="M9.5 2c-.9 0-1.75.216-2.501.6A5 5 0 0 1 13 7.5a6.5 6.5 0 1 1-13 0 .5.5 0 0 1 1 0 5.5 5.5 0 0 0 8.001 4.9A5 5 0 0 1 3 7.5a6.5 6.5 0 0 1 13 0 .5.5 0 0 1-1 0A5.5 5.5 0 0 0 9.5 2M8 3.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/></svg>
+          </div>
+          <span>Armas</span>
+        </a>
+        <a href="#curaciones">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bandaid" viewBox="0 0 16 16"><path d="M14.121 1.879a3 3 0 0 0-4.242 0L8.733 3.026l4.261 4.26 1.127-1.165a3 3 0 0 0 0-4.242M12.293 8 8.027 3.734 3.738 8.031 8 12.293zm-5.006 4.994L3.03 8.737 1.879 9.88a3 3 0 0 0 4.241 4.24l.006-.006 1.16-1.121ZM2.679 7.676l6.492-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492z"/><path d="M5.56 7.646a.5.5 0 1 1-.706.708.5.5 0 0 1 .707-.708Zm1.415-1.414a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707M8.39 4.818a.5.5 0 1 1-.708.707.5.5 0 0 1 .707-.707Zm0 5.657a.5.5 0 1 1-.708.707.5.5 0 0 1 .707-.707ZM9.803 9.06a.5.5 0 1 1-.707.708.5.5 0 0 1 .707-.707Zm1.414-1.414a.5.5 0 1 1-.706.708.5.5 0 0 1 .707-.708ZM6.975 9.06a.5.5 0 1 1-.707.708.5.5 0 0 1 .707-.707ZM8.39 7.646a.5.5 0 1 1-.708.708.5.5 0 0 1 .707-.708Zm1.413-1.414a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707"/></svg>
+          </div>
+          <span>Curaciones</span>
+        </a>
+        <a href="#mapas">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/></svg>
+          </div>
+          <span>Mapas</span>
+        </a>
+        <a href="login.html" class="nav-login">
+          <div class="nav__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/></svg>
+          </div>
+          <span>Login</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="content">
+
+      <!--Portada-->
+      <section id="inicio" class="container hero" aria-label="Portada">
+        <div class="hero__text">
+          <h2>Apex Legends</h2>
+          <p>
+            Videojuego gratuito de Respawn Entertainment que combina battle royale y shooter:
+            escuadrones de tres Leyendas con habilidades únicas que compiten en mapas rotativos.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="#leyendas">Ver Leyendas</a>
+            <a class="btn" href="#armas">Ver Armas</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img src="img/apex.jpg" alt="Arte de Apex Legends" loading="lazy">
+        </div>
+      </section>
+
+      <!--Leyendas-->
+      <section id="leyendas" class="container section" aria-label="Leyendas">
+        <h2>Leyendas</h2>
+        <p class="lead">Clases generales y su papel en el equipo.</p>
+
+        <!--Carrusel-->
+        <div class="carousel">
+          <!-- Controles (puntos) -->
+          <input type="radio" name="c" id="c1" checked>
+          <input type="radio" name="c" id="c2">
+          <input type="radio" name="c" id="c3">
+          <input type="radio" name="c" id="c4">
+          <input type="radio" name="c" id="c5">
+
+          <div class="slides">
+            <!--Asalto-->
+            <article class="slide">
+              <div class="slide__col">
+                <h3>Asalto</h3>
+                <p class="small">Va el frente del equipo. Inician peleas y presionan.</p>
+                <ul class="bul">
+                  <li><b>Habilidad de clase:</b> Más munición por ranura y acceso a compartimentos de armas.</li>
+                  <li><b>Ejemplos:</b> Bangalore, Octane, Mad Maggie.</li>
+                  <li><b>Uso:</b> Entrada agresiva y ruptura de posiciones.</li>
+                </ul>
+              </div>
+              <div class="slide__img">
+                <img src="img/ASALTO3.jpg" alt="Clase Asalto" loading="lazy">
+              </div>
+            </article>
+
+            <!-- Escaramuza -->
+            <article class="slide">
+              <div class="slide__col">
+                <h3>Escaramuza</h3>
+                <p class="small">Movilidad y flanqueo para cambiar ángulos.</p>
+                <ul class="bul">
+                  <li><b>Habilidad de clase:</b> Ver contenido de paquetes y alertar al equipo.</li>
+                  <li><b>Ejemplos:</b> Pathfinder, Wraith, Horizon.</li>
+                  <li><b>Uso:</b> Reposicionamiento y tomas de altura.</li>
+                </ul>
+              </div>
+              <div class="slide__img">
+                <img src="img/ESCARAMUZA.jpg" alt="Clase Escaramuza" loading="lazy">
+              </div>
+            </article>
+
+            <!-- Control -->
+            <article class="slide">
+              <div class="slide__col">
+                <h3>Control</h3>
+                <p class="small">Defienden zonas y dominan terreno.</p>
+                <ul class="bul">
+                  <li><b>Habilidad de clase:</b> Escanean balizas para ver el siguiente anillo.</li>
+                  <li><b>Ejemplos:</b> Caustic, Wattson, Rampart.</li>
+                  <li><b>Uso:</b> Cierres de círculo y defensa de posiciones.</li>
+                </ul>
+              </div>
+              <div class="slide__img">
+                <img src="img/CONTROL.jpg" alt="Clase Control" loading="lazy">
+              </div>
+            </article>
+
+            <!-- Apoyo -->
+            <article class="slide">
+              <div class="slide__col">
+                <h3>Apoyo</h3>
+                <p class="small">Sostienen al equipo con reanimaciones y recursos.</p>
+                <ul class="bul">
+                  <li><b>Habilidad de clase:</b> Más curas y uso de balizas de reanimación.</li>
+                  <li><b>Ejemplos:</b> Lifeline, Loba, Gibraltar.</li>
+                  <li><b>Uso:</b> Estabilidad del escuadrón y ahorro de loot.</li>
+                </ul>
+              </div>
+              <div class="slide__img">
+                <img src="img/support.webp" alt="Clase Apoyo" loading="lazy">
+              </div>
+            </article>
+
+            <!-- Reconocimiento -->
+            <article class="slide">
+              <div class="slide__col">
+                <h3>Reconocimiento</h3>
+                <p class="small">Información y rastreo de enemigos.</p>
+                <ul class="bul">
+                  <li><b>Habilidad de clase:</b> Escanean balizas de reconocimiento.</li>
+                  <li><b>Ejemplos:</b> Bloodhound, Crypto, Seer.</li>
+                  <li><b>Uso:</b> Planear rotaciones y tomar peleas favorables.</li>
+                </ul>
+              </div>
+              <div class="slide__img">
+                <img src="img/RECONOCIMIENTO.avif" alt="Clase Reconocimiento" loading="lazy">
+              </div>
+            </article>
+          </div>
+
+          <!-- Navegación del carrusel -->
+          <div class="dots">
+            <label for="c1"></label>
+            <label for="c2"></label>
+            <label for="c3"></label>
+            <label for="c4"></label>
+            <label for="c5"></label>
+          </div>
+        </div>
+      </section> <!-- /Leyendas (cerrado) -->
+
+      <!-- Armas -->
+      <section id="armas" class="container section" aria-label="Armas y munición">
+        <h2>Armas y munición</h2>
+        <p class="lead">
+          Cada tipo de munición define un estilo de juego. Conocerlas te dará ventaja en el campo de batalla.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/ligera.png" alt="Munición ligera" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Munición ligera</h3>
+              <p>Alta cadencia y bajo retroceso. Ideal para combates a corta y media distancia, muy fácil de controlar.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/pesada.png" alt="Munición pesada" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Munición pesada</h3>
+              <p>Mayor daño por bala a costa de un retroceso más fuerte. Efectiva a media distancia.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/energia.png" alt="Munición de energía" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Energía</h3>
+              <p>Proyectiles rápidos con poca caída de bala. Usada en armas de alta tecnología, muy precisa.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/escopeta.png" alt="Munición de escopeta" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Escopeta</h3>
+              <p>Daño masivo a quemarropa. Esencial para combates en interiores y espacios cerrados.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/franco.png" alt="Munición de francotirador" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Francotirador</h3>
+              <p>Diseñada para el combate a larga distancia. Alto daño por disparo para controlar el mapa.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Wiki de Armas Incrustada -->
+        <p class="lead mtop">Si quieres conocer todas las armas, explora la guía completa a continuación:</p>
+        <div class="iframe-container">
+          <iframe
+            src="https://help.ea.com/es-mx/articles/apex-legends/guns-and-weapons/"
+            title="Armas de Apex Legends"
+            loading="lazy">
+          </iframe>
+        </div>
+      </section>
+
+      <!-- Curaciones -->
+      <section id="curaciones" class="container section" aria-label="Curaciones">
+        <h2>Curaciones</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/curas.png" alt="Ícono de curas" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Salud</h3>
+              <p>Usa jeringas para curas rápidas o kits médicos para restaurar toda la salud.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/shield.png" alt="Ícono de escudo" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Escudo</h3>
+              <p>Las celdas recargan una parte, mientras que las baterías restauran el escudo por completo.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <img src="img/kit.png" alt="Ícono Kit Fénix" loading="lazy">
+            </div>
+            <div class="card__text">
+              <h3>Kit Fénix</h3>
+              <p>El objeto más valioso. Restaura toda tu salud y escudos, pero su uso es muy lento.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Mapas -->
+      <section id="mapas" class="container section" aria-label="Mapas">
+        <h2>Mapas</h2>
+        <p class="lead">
+          Los mapas en Apex Legends rotan constantemente para mantener el juego fresco. Los principales son:
+        </p>
+        <ul class="bul">
+          <li>Olympus</li>
+          <li>World's Edge</li>
+          <li>Storm Point</li>
+          <li>Kings Canyon</li>
+          <li>Broken Moon</li>
+        </ul>
+
+        <p class="lead mtop">
+          A continuación puedes ver cuál es el mapa activo en tiempo real y cuánto falta para la siguiente rotación.
+        </p>
+        <div class="iframe-container">
+          <iframe
+            src="https://apexmap.kuroi.io/br"
+            title="Estado de los mapas de Apex Legends en tiempo real"
+            loading="lazy">
+          </iframe>
+        </div>
+      </section>
+
+      <!-- Tablas de Gestión (No funcionales) -->
+      <section id="gestion-datos" class="container section" aria-label="Gestión de Datos de Ejemplo">
+        <h2>Gestión de Datos (Ejemplo)</h2>
+        <p class="lead">
+          A continuación se muestran ejemplos de tablas para agregar, modificar y eliminar registros (no funcionales).
+        </p>
+
+        <!-- Tabla para Agregar -->
+        <div class="table-container mtop">
+          <h3>Agregar Nuevo Jugador</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td><label for="new-player">Nombre de Jugador</label></td>
+                <td><input type="text" id="new-player" placeholder="Ej: NoobMaster69"></td>
+              </tr>
+              <tr>
+                <td><label for="new-legend">Leyenda Favorita</label></td>
+                <td><input type="text" id="new-legend" placeholder="Ej: Wraith"></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="action-cell">
+                  <button type="button" class="btn btn--primary">Agregar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tabla para Modificar -->
+        <div class="table-container mtop">
+          <h3>Modificar Jugadores Existentes</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Jugador</th>
+                <th>Leyenda Favorita</th>
+                <th class="action-cell">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RayoMcquen</td>
+                <td>Pathfinder</td>
+                <td class="action-cell"><button type="button" class="btn btn--secondary">Modificar</button></td>
+              </tr>
+              <tr>
+                <td>MaLora115</td>
+                <td>Horizon</td>
+                <td class="action-cell"><button type="button" class="btn btn--secondary">Modificar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tabla para Eliminar -->
+        <div class="table-container mtop">
+          <h3>Eliminar Jugadores</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Jugador</th>
+                <th>Leyenda Favorita</th>
+                <th class="action-cell">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JugadorAntiguo</td>
+                <td>Fuse</td>
+                <td class="action-cell"><button type="button" class="btn btn--primary">Eliminar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="container foot">
+        <p>Hecho por Raymundo Carrillo y Aaron Cortes</p>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>
