@@ -10,7 +10,7 @@
   <div class="login-card">
     <h2>Crear Cuenta</h2>
     <p>Regístrate para unirte a la comunidad.</p>
-    <form action="index.html" method="get"> <!-- Acción simple para ir a la guía después del registro -->
+    <form action="index.html" method="get"> 
       <div class="form-group">
         <label for="username">Usuario</label>
         <input type="text" id="username" name="username" required>
@@ -33,5 +33,45 @@
       <a href="login.html">Ya tienes una cuenta? Inicia sesión</a>
     </div>
   </div>
+  <script>
+    (function(){
+      const form = document.querySelector('form');
+      const user = document.getElementById('username');
+      const pwd = document.getElementById('password');
+      const pwd2 = document.getElementById('confirm-password');
+
+      // Crear elemento para mensaje de error
+      const err = document.createElement('div');
+      err.className = 'error-message';
+      err.style.display = 'none';
+      form.insertBefore(err, form.firstChild);
+
+      form.addEventListener('submit', function(e){
+        // limpiar mensaje anterior
+        err.style.display = 'none';
+        err.textContent = '';
+
+        // Validar usuario (mínimo 5 caracteres)
+        if (!user.value || user.value.trim().length < 5) {
+          e.preventDefault();
+          err.textContent = 'El nombre de usuario debe tener al menos 5 caracteres.';
+          err.style.display = 'block';
+          user.focus();
+          return;
+        }
+
+        // Validar contraseñas iguales
+        if (pwd.value !== pwd2.value) {
+          e.preventDefault();
+          err.textContent = 'Las contraseñas no coinciden.';
+          err.style.display = 'block';
+          pwd2.focus();
+          return;
+        }
+
+        // Si todo está bien, el formulario se enviará (redirige a index.html)
+      });
+    })();
+  </script>
 </body>
 </html>

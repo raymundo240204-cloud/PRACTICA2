@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apex Legends — Guía básica</title>
-  <link rel="stylesheet" href="apex.css">
+  <link rel="stylesheet" href="apex.css">">
 </head>
 <body>
   <div class="site">
@@ -320,81 +320,16 @@
         </div>
       </section>
 
-      <!-- Tablas de Gestión (No funcionales) -->
+      <!-- Gestión de Datos (React) -->
       <section id="gestion-datos" class="container section" aria-label="Gestión de Datos de Ejemplo">
         <h2>Gestión de Datos (Ejemplo)</h2>
         <p class="lead">
-          A continuación se muestran ejemplos de tablas para agregar, modificar y eliminar registros (no funcionales).
+          A continuación se muestra una demo <b>dinámica con React</b> para agregar, modificar, eliminar y buscar jugadores.
+          (Luego podrás conectar estos eventos a tu API/BD real).
         </p>
 
-        <!-- Tabla para Agregar -->
-        <div class="table-container mtop">
-          <h3>Agregar Nuevo Jugador</h3>
-          <table>
-            <tbody>
-              <tr>
-                <td><label for="new-player">Nombre de Jugador</label></td>
-                <td><input type="text" id="new-player" placeholder="Ej: NoobMaster69"></td>
-              </tr>
-              <tr>
-                <td><label for="new-legend">Leyenda Favorita</label></td>
-                <td><input type="text" id="new-legend" placeholder="Ej: Wraith"></td>
-              </tr>
-              <tr>
-                <td colspan="2" class="action-cell">
-                  <button type="button" class="btn btn--primary">Agregar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Tabla para Modificar -->
-        <div class="table-container mtop">
-          <h3>Modificar Jugadores Existentes</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Jugador</th>
-                <th>Leyenda Favorita</th>
-                <th class="action-cell">Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>RayoMcquen</td>
-                <td>Pathfinder</td>
-                <td class="action-cell"><button type="button" class="btn btn--secondary">Modificar</button></td>
-              </tr>
-              <tr>
-                <td>MaLora115</td>
-                <td>Horizon</td>
-                <td class="action-cell"><button type="button" class="btn btn--secondary">Modificar</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Tabla para Eliminar -->
-        <div class="table-container mtop">
-          <h3>Eliminar Jugadores</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Jugador</th>
-                <th>Leyenda Favorita</th>
-                <th class="action-cell">Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>JugadorAntiguo</td>
-                <td>Fuse</td>
-                <td class="action-cell"><button type="button" class="btn btn--primary">Eliminar</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <!-- Punto de montaje de React -->
+        <div id="react-gestion"></div>
       </section>
 
       <!-- Footer -->
@@ -404,5 +339,181 @@
 
     </main>
   </div>
+
+  <!-- React + ReactDOM + Babel (CDN) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- App React: Gestión de Datos -->
+  <script type="text/babel">
+    const { useState, useMemo, useRef } = React;
+
+    // Mock inicial (simula BD). Reemplázalo por fetch() cuando tengas API.
+    const INICIAL = [
+      { id: 1, jugador: "RayoMcquen",  leyenda: "Pathfinder" },
+      { id: 2, jugador: "MaLora115",   leyenda: "Horizon"    },
+      { id: 3, jugador: "JugadorAntiguo", leyenda: "Fuse"    },
+    ];
+
+    function GestionJugadores() {
+      const [rows, setRows] = useState(INICIAL);
+      const [buscar, setBuscar] = useState("");
+
+      // Form estado (alta/edición)
+  const [form, setForm] = useState({ jugador: "", leyenda: "" });
+      const [editId, setEditId] = useState(null); // si es null, es "agregar"
+  const jugadorRef = useRef(null);
+
+      const filtrados = useMemo(() => {
+        const q = buscar.trim().toLowerCase();
+        if (!q) return rows;
+        return rows.filter(r =>
+          r.jugador.toLowerCase().includes(q) ||
+          r.leyenda.toLowerCase().includes(q)
+        );
+      }, [rows, buscar]);
+
+      const onChange = (e) => {
+        const { name, value } = e.target;
+        setForm(prev => ({ ...prev, [name]: value }));
+      };
+
+      const limpiar = () => {
+        setForm({ jugador: "", leyenda: "" });
+        setEditId(null);
+      };
+
+      const onSubmit = (e) => {
+        e.preventDefault();
+        const jugador = form.jugador.trim();
+        const leyenda = form.leyenda.trim();
+        if (!jugador || !leyenda) {
+          alert("Completa jugador y leyenda.");
+          return;
+        }
+
+        if (editId === null) {
+          // Agregar
+          const nuevo = { id: Date.now(), jugador, leyenda };
+          setRows(prev => [nuevo, ...prev]);
+        } else {
+          // Editar
+          setRows(prev => prev.map(r => r.id === editId ? { ...r, jugador, leyenda } : r));
+        }
+        limpiar();
+      };
+
+      const editar = (row) => {
+        setEditId(row.id);
+        setForm({ jugador: row.jugador, leyenda: row.leyenda });
+        // Dar tiempo para que el formulario se actualice y luego enfocar
+        setTimeout(()=>{
+          if (jugadorRef.current) jugadorRef.current.focus();
+        }, 60);
+        // Usar scrollIntoView para evitar cálculos que lleven al inicio
+        const target = document.getElementById("react-gestion");
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      };
+
+      const eliminar = (id) => {
+        if (confirm("¿Eliminar registro?")) {
+          setRows(prev => prev.filter(r => r.id !== id));
+        }
+      };
+
+      return (
+        <div className="table-container mtop">
+          {/* Barra de búsqueda */}
+          <div className="toolbar" style={{display:"flex", gap:".75rem", alignItems:"center", marginBottom:"1rem"}}>
+            <input
+              className="input"
+              type="search"
+              placeholder="Buscar por jugador o leyenda…"
+              value={buscar}
+              onChange={(e)=>setBuscar(e.target.value)}
+              aria-label="Buscar"
+            />
+          </div>
+
+          {/* Form alta/edición */}
+          <form className="form" onSubmit={onSubmit} noValidate>
+            <h3>{editId === null ? "Agregar Nuevo Jugador" : "Editar Jugador"}</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <td><label htmlFor="jugador">Nombre de Jugador</label></td>
+                  <td>
+                    <input
+                      id="jugador"
+                      name="jugador"
+                      ref={jugadorRef}
+                      className="input"
+                      value={form.jugador}
+                      onChange={onChange}
+                      placeholder="Ej: NoobMaster69"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label htmlFor="leyenda">Leyenda Favorita</label></td>
+                  <td>
+                    <input
+                      id="leyenda"
+                      name="leyenda"
+                      className="input"
+                      value={form.leyenda}
+                      onChange={onChange}
+                      placeholder="Ej: Wraith"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan="2" className="action-cell">
+                    <button type="submit" className="btn btn--primary" aria-label={editId===null?"Agregar":"Guardar cambios"}>
+                      {editId === null ? "Agregar" : "Guardar"}
+                    </button>
+                    {editId !== null && (
+                      <button type="button" className="btn btn--secondary" onClick={limpiar} style={{marginLeft:".5rem"}}>
+                        Cancelar
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+
+          {/* Tabla de registros */}
+          <h3 className="mtop">Jugadores</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Jugador</th>
+                <th>Leyenda Favorita</th>
+                <th className="action-cell">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtrados.length === 0 ? (
+                <tr><td colSpan="3">Sin resultados.</td></tr>
+              ) : filtrados.map(row => (
+                <tr key={row.id} className={editId === row.id ? 'is-editing' : ''}>
+                  <td>{row.jugador}</td>
+                  <td>{row.leyenda}</td>
+                  <td className="action-cell">
+                    <button type="button" className="btn btn--secondary" onClick={(e)=>{ e.preventDefault(); editar(row); }}>Modificar</button>
+                    <button type="button" className="btn btn--primary" onClick={()=>eliminar(row.id)} style={{marginLeft:".5rem"}}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("react-gestion")).render(<GestionJugadores />);
+  </script>
 </body>
 </html>

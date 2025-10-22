@@ -1,29 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Apex Legends Guía</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
   <div class="login-card">
     <h2>Iniciar Sesión</h2>
     <p>Accede a tu cuenta para continuar.</p>
-    <form action="index.html" method="get"> <!-- Acción simple para volver a la guía -->
-      <div class="form-group">
-        <label for="username">Usuario</label>
-        <input type="text" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit" class="btn">Ingresar</button>
+
+    <!-- Fallback estático: se mostrará si React no logra renderizar -->
+  <form class="fallback-form" action="index.html" method="GET">
+      <label>Correo
+        <input type="email" class="input" placeholder="tucorreo@ejemplo.com" name="email" />
+      </label>
+      <label>Contraseña
+        <input type="password" class="input" placeholder="••••••••" name="password" />
+      </label>
+      <button class="btn btn--primary">Entrar</button>
     </form>
+
+    <!-- Punto de montaje React -->
+    <div id="root-login"></div>
+
     <div class="login-footer">
-      <a href="register.html">No tienes cuenta? Regístrate</a>
+      <a href="register.html">¿No tienes cuenta? Regístrate</a>
     </div>
   </div>
+
+  <!-- Scripts al final del body -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script src="https://unpkg.com/react-hook-form/dist/index.umd.js"></script>
+  <script src="https://unpkg.com/yup@1.4.0/dist/yup.umd.js"></script>
+  <script src="https://unpkg.com/@hookform/resolvers/dist/umd/yup.umd.min.js"></script>
+
+  <script type="text/babel">
+    const { useForm } = ReactHookForm;
+    const { yupResolver } = hookformResolvers;
+
+    const schema = yup.object({
+      email: yup.string().email("Correo inválido").required("El correo es obligatorio"),
+      password: yup.string().min(6, "Mínimo 6 caracteres").required("La contraseña es obligatoria"),
+    }).required();
+
+    function LoginForm() {
+      const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+        resolver: yupResolver(schema),
+        mode: "onTouched"
+      });
+
+      const onSubmit = async (data) => {
+        // Aquí iría tu fetch real
+        // await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) })
+        alert("Login OK:\n" + JSON.stringify(data, null, 2));
+        // Simular redirección tras login exitoso
+        window.location.href = 'index.html';
+      };
+
+      return (
+        <form className="form table-container" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <label>Correo</label>
+          <input
+            type="email"
+            className="input"
+            placeholder="tucorreo@ejemplo.com"
+            {...register("email")}
+          />
+          {errors.email && <small style={{color:'#ff6b6b'}}>{errors.email.message}</small>}
+
+          <div style={{height:'12px'}}></div>
+
+          <label>Contraseña</label>
+          <input
+            type="password"
+            className="input"
+            placeholder="••••••••"
+            {...register("password")}
+          />
+          {errors.password && <small style={{color:'#ff6b6b'}}>{errors.password.message}</small>}
+
+          <button className="btn btn--primary" disabled={isSubmitting} style={{marginTop:'16px'}}>
+            Entrar
+          </button>
+        </form>
+      );
+    }
+
+    try {
+      ReactDOM.createRoot(document.getElementById("root-login")).render(<LoginForm />);
+      // Si React logra renderizar, ocultamos el fallback estático
+      const fb = document.querySelector('.fallback-form');
+      if (fb) fb.style.display = 'none';
+    } catch (err) {
+      // Si hay error, lo dejamos visible para que el usuario vea el formulario
+      console.error('React render error:', err);
+    }
+  </script>
 </body>
 </html>

@@ -326,6 +326,20 @@ img {
   overflow-x: auto; /* Para que la tabla sea responsive en móviles */
 }
 
+  /* Resaltar fila en edición */
+  tbody tr.is-editing {
+    box-shadow: 0 18px 40px rgba(196,58,47,0.09) !important;
+    transform: translateY(-6px) !important;
+    border-left: 4px solid var(--primario);
+  }
+
+  /* Inputs focus */
+  .table-container .input:focus {
+    box-shadow: 0 6px 18px rgba(196,58,47,0.06);
+    border-color: rgba(196,58,47,0.6);
+    outline: none;
+  }
+
 .table-container h3 {
   font-size: 18px;
   margin-bottom: 12px;
@@ -333,29 +347,52 @@ img {
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* separa filas para efecto de tarjeta */
   text-align: left;
 }
 
 th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid var(--borde);
+  padding: 14px 16px;
+  vertical-align: middle;
 }
 
 thead th {
-  background-color: #1f242c;
+  background: linear-gradient(90deg, rgba(196,58,47,0.12), rgba(0,0,0,0.12));
   color: var(--texto);
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 13px;
   text-transform: uppercase;
+  letter-spacing: .08em;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 
 tbody tr {
-  transition: background-color 0.2s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  transform: translateY(0);
 }
 
 tbody tr:hover {
-  background-color: #1f242c;
+  transform: translateY(-6px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.7);
+}
+
+/* Tabla como tarjetas en filas: aplicar borde y spacing a las celdas en cada fila */
+tbody tr td {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  border-radius: 10px;
+}
+
+/* Zebra ligero usando overlay */
+tbody tr:nth-child(even) td {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
 }
 
 /* Estilos para elementos dentro de las tablas de gestión */
@@ -367,10 +404,10 @@ tbody tr:hover {
 
 .table-container input[type="text"] {
   width: 100%;
-  padding: 10px;
-  background: var(--fondo);
-  border: 1px solid var(--borde);
-  border-radius: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg,#0b0d0f,#0f1114);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
   color: var(--texto);
   font-size: 15px;
   font-family: inherit;
@@ -388,4 +425,327 @@ tbody tr:hover {
 .table-container .btn {
   padding: 8px 12px;
   font-size: 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+
+.table-container .btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+/* Icon inside buttons */
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  fill: currentColor;
+}
+
+/* Variants */
+.btn--danger {
+  background: linear-gradient(180deg,#b8392f,#9f2b24);
+  border-color: #7a2018;
+  color: #fff;
+}
+.btn--secondary {
+  background: linear-gradient(180deg,#22272d,#14171a);
+  border-color: #2b3137;
+  color: var(--texto);
+}
+
+.btn:focus {
+  outline: 2px solid rgba(196,58,47,0.18);
+  outline-offset: 2px;
+}
+
+/* Acción compacta: convertir los botones en grupos visuales */
+.action-cell .btn + .btn {
+  margin-left: 8px;
+}
+
+/* Responsive: en móviles mostramos filas como bloques apilados */
+@media (max-width: 560px) {
+  table, thead, tbody, th, td, tr { display: block; }
+  thead { display: none; }
+  tbody tr { margin-bottom: 12px; }
+  tbody tr td { display: flex; justify-content: space-between; padding: 12px; }
+  tbody tr td:first-child { font-weight: 600; }
+  .action-cell { text-align: right; display: flex; gap: 8px; justify-content: flex-end; }
+}
+/* ==== FORMULARIO REACT - ESTILO APEX ==== */
+
+.table-container {
+  background: #111316;        /* gris muy oscuro */
+  border: 1px solid #2b2f36;  /* bordes sutiles */
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  color: #e1e1e1;             /* texto claro */
+  box-shadow: 0 0 10px rgba(255,0,0,0.1);
+}
+
+.table-container h3 {
+  color: #e94545;             /* rojo Apex */
+  margin-bottom: .6rem;
+}
+
+.input {
+  width: 100%;
+  background: #1a1d21;
+  color: #f5f5f5;
+  border: 1px solid #2e3238;
+  border-radius: 6px;
+  padding: .5rem .75rem;
+  font-size: .95rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #e94545;
+  box-shadow: 0 0 5px #e94545;
+}
+
+.btn {
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn--primary {
+  background: #e94545;
+  color: #fff;
+}
+
+.btn--secondary {
+  background: #34383d;
+  color: #fff;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border-bottom: 1px solid #2e3238;
+  padding: .6rem;
+}
+
+th {
+  color: #e94545;
+  text-align: left;
+  font-weight: 600;
+}
+
+.action-cell {
+  text-align: right;
+}
+
+/* ======================================================
+   APEX UI — Mejora visual y micro-interacciones
+   (Agregar al final de apex.css)
+   ====================================================== */
+
+/* 1) Tokens extra (sin romper tu paleta) */
+:root {
+  --primario-700: #9e2e26;
+  --primario-600: #b7362c;
+  --primario-500: #c43a2f; /* ya definido como --primario */
+  --accent: #ffb84d;
+  --panel-2: #14171c;
+  --panel-3: #0d0f12;
+  --borde-soft: rgba(255,255,255,0.06);
+  --shadow-1: 0 6px 20px rgba(0,0,0,0.55);
+  --shadow-2: 0 12px 34px rgba(0,0,0,0.7);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+}
+
+/* 2) Suavizado tipográfico + selección */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+::selection { background: rgba(196,58,47,0.35); color: #fff; }
+
+/* 3) Contenedor más “pro” en pantallas grandes */
+.container { max-width: 1180px; }
+
+/* 4) Cards con elevación y hover sutil */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  box-shadow: var(--shadow-1);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--borde-soft);
+}
+.card__icon {
+  background: linear-gradient(180deg, rgba(196,58,47,0.18), rgba(0,0,0,0));
+  display: grid; place-items: center;
+}
+
+/* 5) Botones más “game UI” + estados */
+.btn {
+  position: relative;
+  overflow: hidden;
+  letter-spacing: .02em;
+  transition: transform .1s ease, filter .18s ease, box-shadow .18s ease;
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn:focus-visible {
+  outline: 2px solid rgba(196,58,47,.45);
+  outline-offset: 2px;
+}
+.btn--primary {
+  background: linear-gradient(180deg, var(--primario), var(--primario-700));
+  border-color: var(--primario-700);
+  box-shadow: 0 8px 22px rgba(196,58,47,.35);
+}
+.btn--primary:hover { filter: brightness(1.05); }
+.btn--secondary {
+  background: linear-gradient(180deg,#1d2229,#12161d);
+  border-color: #2b3137;
+}
+
+/* Tamaños opcionales */
+.btn--sm { padding: 8px 10px; font-size: 13px; }
+.btn--lg { padding: 12px 18px; font-size: 15px; }
+
+/* 6) Inputs y selects unificados (incluye los de React) */
+.input,
+.table-container input[type="text"],
+select,
+input[type="search"] {
+  background: linear-gradient(180deg,#0b0d0f,#0f1114);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: var(--texto);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.input::placeholder,
+.table-container input[type="text"]::placeholder,
+input[type="search"]::placeholder { color: #7f8896; }
+.input:focus,
+.table-container input[type="text"]:focus,
+select:focus,
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--primario);
+  box-shadow: 0 0 0 3px rgba(196,58,47,.16);
+}
+
+/* Barra herramientas de filtros/búsqueda (si existe) */
+.toolbar {
+  background: linear-gradient(180deg, var(--panel), var(--panel-3));
+  border: 1px solid var(--borde);
+  border-radius: var(--radius-md);
+  padding: 10px;
+}
+
+/* 7) Tabla: cabezal flotante + filas “card” */
+thead th {
+  background: linear-gradient(90deg, rgba(196,58,47,0.12), rgba(0,0,0,0.18));
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+tbody tr td {
+  border: 1px solid rgba(255,255,255,0.03);
+}
+tbody tr:hover td {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.16));
+}
+
+/* 8) Dots del carrusel: “activo” visible */
+#c1:checked ~ .dots label[for="c1"],
+#c2:checked ~ .dots label[for="c2"],
+#c3:checked ~ .dots label[for="c3"],
+#c4:checked ~ .dots label[for="c4"],
+#c5:checked ~ .dots label[for="c5"] {
+  transform: scale(1.25);
+  background: var(--primario);
+  box-shadow: 0 0 0 4px rgba(196,58,47,0.22);
+}
+.dots label { transition: transform .15s ease, filter .15s ease, box-shadow .15s ease; }
+
+/* 9) Nav lateral: realce activo y hover */
+.nav a {
+  transition: background .16s ease, color .16s ease, transform .1s ease;
+  border: 1px solid transparent;
+}
+.nav a.is-active {
+  background: linear-gradient(180deg, rgba(196,58,47,0.12), rgba(0,0,0,0));
+  border-color: rgba(196,58,47,0.28);
+}
+.nav a:hover, .nav a:focus-visible {
+  transform: translateX(2px);
+}
+
+/* 10) Badges / etiquetas rápidas (útiles p.ej. en cards) */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  line-height: 1;
+  background: rgba(196,58,47,.18);
+  border: 1px solid rgba(196,58,47,.35);
+  color: #ffd6cf;
+}
+
+/* 11) “Glass panel” utilitario (para cajas destacadas) */
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+/* 12) Scrollbar sutil (WebKit) */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: #0f1114; }
+*::-webkit-scrollbar-thumb {
+  background: #22262d; border-radius: 10px; border: 2px solid #0f1114;
+}
+*::-webkit-scrollbar-thumb:hover { background: #2b3138; }
+
+/* 13) Animación opcional de aparición */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.section, .card, .table-container { animation: fadeUp .25s ease both; }
+
+/* 14) Accesibilidad: estados deshabilitados */
+[disabled], .btn[disabled] {
+  opacity: .55; cursor: not-allowed; filter: grayscale(.2);
+}
+
+/* 15) Utilidades pequeñas */
+.hidden { display: none !important; }
+.flex { display: flex; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.round { border-radius: var(--radius-md); }
+.pill { border-radius: var(--radius-pill); }
+
+/* 16) Respeto accesibilidad: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
