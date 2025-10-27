@@ -1,0 +1,246 @@
+/* Variables (copiadas de apex.css para consistencia) */
+:root {
+  --primario: #c43a2f;
+  --fondo: #0f1114;
+  --panel: #171a1f;
+  --borde: #252a32;
+  --texto: #e6e9ef;
+  --apagado: #9aa3b2;
+}
+
+/* Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Tarjeta de Login */
+.login-card {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.login-card p {
+  color: var(--apagado);
+  margin-bottom: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  font-size: 16px;
+}
+
+.btn {
+  background: var(--primario);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.login-footer {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: var(--apagado);
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(255,107,107,0.06);
+  color: #ffb3b3;
+  border: 1px solid rgba(255,107,107,0.12);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+/* =======================================================
+   LOGIN — APEX STYLE PRO (mejoras visuales y accesibles)
+   Pegar al final de login.css
+   ======================================================= */
+
+/* Fondo con leve viñeta para dar profundidad */
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(196,58,47,0.08), transparent 60%),
+    radial-gradient(1000px 600px at 110% 110%, rgba(196,58,47,0.06), transparent 60%),
+    var(--fondo);
+}
+
+/* Tarjeta con “glass panel” + sombra */
+.login-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.10));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.login-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 70px rgba(0,0,0,.65);
+  border-color: rgba(196,58,47,.28);
+}
+.login-card h2 {
+  font-size: 28px;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.login-card p { margin-bottom: 22px; }
+
+/* Layout del formulario (sin cambiar tu HTML) */
+form { gap: 12px; }
+form .row { display: grid; gap: 12px; }   /* por si más adelante quieres agrupar campos */
+
+/* Inputs unificados (también cubre los de React: .input) */
+.input,
+.form-group input,
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg,#0c0f12,#12161b);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--texto);
+  font-size: 15px;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .06s ease;
+}
+.input::placeholder,
+.form-group input::placeholder { color: #8791a2; }
+.input:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primario);
+  box-shadow: 0 0 0 3px rgba(196,58,47,.18), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.input:active,
+.form-group input:active { transform: translateY(1px); }
+
+/* Estados de validación (útiles con RHF/Zod/Yup) */
+.input.is-invalid,
+.form-group input.is-invalid,
+.has-error .input {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255,107,107,.18);
+}
+.input.is-valid,
+.form-group input.is-valid {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46,204,113,.18);
+}
+
+/* Mensajes de error/ayuda */
+.error-message,
+small.error,
+.form small[role="alert"] {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255,107,107,.06);
+  color: #ffc7c7;
+  border: 1px solid rgba(255,107,107,.14);
+  font-size: 13px;
+}
+
+/* Botón principal estilo Apex */
+.btn {
+  background: linear-gradient(180deg, var(--primario), #9e2e26);
+  border: 1px solid #8b291f;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  box-shadow: 0 10px 26px rgba(196,58,47,.35);
+  cursor: pointer;
+  transition: transform .08s ease, filter .18s ease, box-shadow .18s ease;
+}
+.btn:hover { filter: brightness(1.06); box-shadow: 0 16px 38px rgba(196,58,47,.45); }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn:focus-visible { outline: 2px solid rgba(196,58,47,.45); outline-offset: 3px; }
+.btn[disabled] { opacity: .55; cursor: not-allowed; filter: grayscale(.2); }
+
+/* Enlaces del footer */
+.login-footer a {
+  color: #cfd6e3;
+  text-decoration: none;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: color .15s ease, background .15s ease;
+}
+.login-footer a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.06);
+  text-decoration: underline;
+}
+
+/* Sutilezas extra */
+hr.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+  border: 0;
+  margin: 12px 0;
+}
+
+/* Responsivo */
+@media (max-width: 460px) {
+  .login-card { padding: 22px 18px; border-radius: 12px; }
+  .login-card h2 { font-size: 24px; }
+}
+
+/* Respeto “reduce motion” para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
